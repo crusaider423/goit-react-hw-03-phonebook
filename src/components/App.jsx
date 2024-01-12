@@ -11,9 +11,22 @@ import css from './App.module.css';
 
 export class App extends Component {
   state = {
-    contacts: [{ id: nanoid(), name: '', number: '' }],
+    contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const getContacts = localStorage.getItem('contact');
+    if (getContacts?.length) {
+      this.setState({ contacts: JSON.parse(getContacts) });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contact', JSON.stringify(this.state.contacts));
+    }
+  }
 
   changeFilter = ({ target: { value } }) => {
     this.setState({

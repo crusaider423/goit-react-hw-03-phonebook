@@ -12,8 +12,8 @@ export const ContactList = ({ contacts, deleteContact }) => {
         </li>
       )
   );
-  if (elem[0] === '') {
-    elem.splice(0, 1);
-  }
+  // if (elem[0] === '') {
+  //   elem.splice(0, 1);
+  // }
   return <ol> {elem}</ol>;
 };
